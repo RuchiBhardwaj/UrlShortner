@@ -5,6 +5,7 @@ import (
 	"io/ioutil"
 	"net/http"
 	"net/url"
+	_ "github.com/go-sql-driver/mysql"
 )
 
 const (
@@ -33,31 +34,20 @@ func tinyUrlShortener(urlOrig string) (string, string) {
 	return getResponseData(tinyUrl), urlOrig
 }
 
-func isGdShortener(urlOrig string) (string, string) {
-	escapedUrl := url.QueryEscape(urlOrig)
-	isGdUrl := fmt.Sprintf("http://is.gd/create.php?url=%s&format=simple", escapedUrl)
-	return getResponseData(isGdUrl), urlOrig
-}
 
-func (u *UrlShortener) short(urlOrig string, shortener int) *UrlShortener {
-	switch shortener {
-	case TINY_URL:
+func (u *UrlShortener) short(urlOrig string) *UrlShortener {
 		shortUrl, originalUrl := tinyUrlShortener(urlOrig)
 		u.ShortUrl = shortUrl
 		u.OriginalUrl = originalUrl
 		return u
-	case IS_GD:
-		shortUrl, originalUrl := isGdShortener(urlOrig)
-		u.ShortUrl = shortUrl
-		u.OriginalUrl = originalUrl
-		return u
-	}
-	return u
 }
 
 func main() {
 	urlOrig := UrlShortener{}
-	urlOrig.short("http://example.com/this-is-a-very-long-url-bla-bla-bla", TINY_URL)
+	urlOrig.short("http://example.com/this-is-a-very-long-url-bla-bla-bla")
 	fmt.Println(urlOrig.ShortUrl)
 	fmt.Println(urlOrig.OriginalUrl)
+
+
+
 }
