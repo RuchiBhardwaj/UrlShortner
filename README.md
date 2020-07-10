@@ -6,7 +6,8 @@ A URL shortner written in Golang.
 sql.go
 --
 run sql.go
-URL shortner by go
+
+URL shortner using sql and go.
 
 
 
