@@ -1,7 +1,7 @@
 # UrlShortner
 A URL shortner written in Golang.
 
-**Files**
+**File**
 --
 sql.go
 --
@@ -30,16 +30,6 @@ go get -d ./...
 
 
 
-test.go
---
-
-go run test.go 
-
-Here I have used these to shorten Url
-
-https://tinyurl.com/
-
-https://is.gd/
 
 
 
